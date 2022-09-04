@@ -6,24 +6,24 @@ import BasicFee from "./formSteps/BasicFee";
 import Total from "./Total";
 import { useState } from "react";
 
-const CreateToken = () => {
+const CreateToken = ({step, setstep}) => {
 
     //state for steps
-  const [step, setstep] = useState(1);
 
   //state for form data
   const [formData, setFormData] = useState({
     tokenName: "",
     tokenSymbol: "",
     decimal: "",
-    description: '',
-    website: '',
-    twitter: '',
-    telegram: '',
+    // description: '',
+    // website: '',
+    // twitter: '',
+    // telegram: '',
     supply: '',
     fee: true,
-    mint: false,
-    burn: false
+    mb: false
+    // mint: false,
+    // burn: false
 
 
   })
@@ -38,17 +38,22 @@ const CreateToken = () => {
     setstep(step - 1);
   };
 
-  // handling form input data by taking onchange value and updating our previous form data state
-  const handleInputData = input => e => {
-    // input value from the form
-    const {value } = e.target;
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+        setFormData((prevState) => ({ ...prevState, [name]: value }));
+  };
 
-    //updating for data state taking previous state and then adding new value to create new object
-    setFormData(prevState => ({
-      ...prevState,
-      [input]: value
-  }));
-  }
+//   // handling form input data by taking onchange value and updating our previous form data state
+//   const handleInputData = input => e => {
+//     // input value from the form
+//     const {value } = e.target;
+
+//     //updating for data state taking previous state and then adding new value to create new object
+//     setFormData(prevState => ({
+//       ...prevState,
+//       [input]: value
+//   }));
+//   }
 
   switch (step) {
     case 1:
@@ -56,7 +61,7 @@ const CreateToken = () => {
             <>
             <div className="w-full max-w-xl mx-auto my-10">
             <div className="px-4 md:px-10 pb-6  bg-[#fff] rounded-xl">
-            <BasicInfo1 formData={formData} setFormData={setFormData} nextStep={nextStep} />
+            <BasicInfo1 formData={formData} setFormData={setFormData} nextStep={nextStep} onChangeHandler={onChangeHandler} />
             </div>
         </div>
             </>
@@ -66,7 +71,7 @@ const CreateToken = () => {
             <>
             <div className="w-full max-w-xl mx-auto my-10">
             <div className="px-4 md:px-10 pb-6  bg-[#fff] rounded-xl">
-            <BasicInfo2 formData={formData} setFormData={setFormData} nextStep={nextStep} prevStep={prevStep} />
+            <BasicInfo2 formData={formData} setFormData={setFormData} nextStep={nextStep} prevStep={prevStep} onChangeHandler={onChangeHandler} />
             </div>
         </div>
             </>
@@ -76,7 +81,17 @@ const CreateToken = () => {
             <>
             <div className="w-full max-w-xl mx-auto my-10">
             <div className="px-4 md:px-10 pb-6  bg-[#fff] rounded-xl">
-            <Total formData={formData} />
+            <BasicInfo3 formData={formData} setFormData={setFormData} nextStep={nextStep} prevStep={prevStep} onChangeHandler={onChangeHandler} />
+            </div>
+        </div>
+            </>
+        )
+    case 4:
+        return (
+            <>
+            <div className="w-full max-w-xl mx-auto my-10">
+            <div className="px-4 md:px-10 pb-6  bg-[#fff] rounded-xl">
+            <Total formData={formData} setFormData={setFormData} prevStep={prevStep} />
             </div>
         </div>
             </>
@@ -87,7 +102,7 @@ const CreateToken = () => {
         <>
             <div className="w-full max-w-xl mx-auto my-10">
             <div className="px-4 md:px-10 pb-6  bg-[#fff] rounded-xl">
-            <BasicInfo1 nextStep={nextStep} handleFormData={handleInputData} values={formData} />
+            <BasicInfo1 nextStep={nextStep} handleFormData={handleInputData} values={formData} onChangeHandler={onChangeHandler} />
             </div>
         </div>
             </>
