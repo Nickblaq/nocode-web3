@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
     <ThemeProvider>
     <NavMenu />
     <Component {...pageProps} />
-    {/* <Footer /> */}
+    <Footer />
     </ThemeProvider>
     </>
   ) 
