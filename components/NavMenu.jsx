@@ -22,27 +22,27 @@ const NavMenu = () => {
         variant="small"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <Link href="/createcoin" className="flex items-center">
           Create
-        </a>
+        </Link>
       </Typography>
       <Typography
         as="li"
         variant="small"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <Link href="/swap" className="flex items-center">
           Swap
-        </a>
+        </Link>
       </Typography>
       <Typography
         as="li"
         variant="small"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <Link href="/locked" className="flex items-center">
           Locked Liquidity
-        </a>
+        </Link>
       </Typography>
     </ul>
   );
@@ -56,7 +56,7 @@ const NavMenu = () => {
                             <Typography 
                             as='h1'
                             variant='large'
-                            className='font-black text-3xl  font-serif'
+                            className='font-black text-3xl  font-serif cursor-pointer'
                             >PISSAR</Typography>
                         </Link>
                         <div className="hidden md:block">{navList}</div>
