@@ -1,9 +1,11 @@
-import { Input, Button } from "@material-tailwind/react";
+
+import { useNetwork } from 'wagmi'
 import { useState } from "react";
-
+import {Menu,MenuHandler,MenuList,MenuItem,Button,Input} from "@material-tailwind/react";
 const TokenForm = () => {
-
-
+    
+    const [state, setState] = useState(false)
+    const { chain, chains } = useNetwork()
     //state for form data
   const [formData, setFormData] = useState({
     tokenName: "",
@@ -25,7 +27,7 @@ const TokenForm = () => {
     return (
         <>
         <div className="w-full max-w-xl mx-auto my-10">
-            <div className="px-1 md:px-4 md:px-10 pb-6  bg-gray-800 rounded-xl">
+            <div className="px-1 md:px-4 md:px-10 pb-6  bg-gray-900 rounded-xl">
        <div
 
 className="mb-10">
@@ -39,13 +41,55 @@ className="mb-10">
         <div className="flex flex-col gap-2">
             <label className="text-lg font-medium leading-3 sr-only">Target Chain</label>
             <Input
-            className="flex" label="Chain" icon={<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 transition ease-in duration-300 cursor-pointer align-middle inline-flex items-center">
-<path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+            className="flex" label="Chain" icon={ <Menu
+                open= {state}
+                animate={{
+                  mount: { y: 0 },
+                  unmount: { y: 25 },
+                }}
+                >
+<div onClick={()=>setState(!state)}>
+<MenuHandler
+
+>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
 </svg>
+
+
+</MenuHandler>
+</div>
+<MenuList className="bg-gray-900">
+{chains && (
+chains.map((chain, idx) => (
+    // <Link href={item.path} key={idx}>
+    <MenuItem
+    key={idx}
+    onClick={()=>setState(false)}
+    className="hover:bg-gray-700 active:bg-gray-700 ">
+    {chain.name}
+    </MenuItem>
+    // </Link>
+))
+)}
+
+</MenuList>
+</Menu>
+
+
 } 
 disabled
 />
-            <p className="text-sm font-normal leading-tight">Current network connected</p>
+{chain ?
+<div className='flex items-center gap-1'>
+<p className="text-sm font-normal leading-tight">Connected to {chain.name}</p>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 fill-[#6f6] text-[#6f6] animate-pulse">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+</svg>
+</div> :
+ <p className="text-sm font-normal leading-tight">No network connected</p>
+}
+           
         </div>
         <div className="flex flex-col gap-2">
             <label className="text-lg font-medium leading-3 sr-only">Token Name</label>
