@@ -14,10 +14,18 @@ const TokenForm = () => {
     tokenSymbol: "",
     decimal: "",
     supply: '',
-    fee: true,
     mint: false,
     burn: false
   })
+
+  function onChangemint (e) {
+    const {mint} = formData
+    setFormData((prevState) => ({ ...prevState, mint: !mint }));
+  }
+  function onChangeburn (e) {
+    const {burn} = formData
+    setFormData((prevState) => ({ ...prevState, burn: !burn }));
+  }
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -29,6 +37,11 @@ const TokenForm = () => {
     switchNetwork?.(x.id)
     setState(false)
   }
+  const checkdata =()=>{
+    console.log(formData)
+  }
+
+  
 
 
 
@@ -186,7 +199,11 @@ disabled
             label="mint"
             color="green"
             className='-ml-1'
-            defaultChecked />
+            name="mint"
+             onChange={onChangemint}
+            value={formData.mint}
+            required
+             />
             </Tooltip>
         {/* </div> */}
         {/* <div className='flex items-center'> */}
@@ -195,7 +212,11 @@ disabled
              label="burn"
              color="green"
             className='-ml-1'
-            defaultChecked />
+            name="burn"
+             onChange={onChangeburn}
+            value={formData.burn}
+            required
+             />
             </Tooltip>
         {/* </div> */}
         </div>
@@ -204,6 +225,7 @@ disabled
 
 
 <Button
+onClick={checkdata}
 ripple={true} color="green" className="">
 <p>Create</p>
 </Button>
