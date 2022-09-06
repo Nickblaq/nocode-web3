@@ -1,11 +1,13 @@
 
-import { useNetwork } from 'wagmi'
+import { useNetwork, useSwitchNetwork } from 'wagmi'
 import { useState } from "react";
-import {Menu,MenuHandler,MenuList,MenuItem,Button,Input} from "@material-tailwind/react";
+import {Tooltip,Button,Input,  Select, Option, Checkbox} from "@material-tailwind/react";
 const TokenForm = () => {
     
     const [state, setState] = useState(false)
     const { chain, chains } = useNetwork()
+    const { chains: switchchains, error, isLoading, pendingChainId, switchNetwork } =
+    useSwitchNetwork()
     //state for form data
   const [formData, setFormData] = useState({
     tokenName: "",
@@ -23,6 +25,12 @@ const TokenForm = () => {
   };
 
 
+  const switchandclose =(x)=>{
+    switchNetwork?.(x.id)
+    setState(false)
+  }
+
+
 
     return (
         <>
@@ -38,7 +46,7 @@ className="mb-10">
 
     <div className="w-11/12 mx-auto mt-8">
     <div className="flex flex-col gap-4 pb-8 pt-6">
-        <div className="flex flex-col gap-2">
+        {/* <div className="flex flex-col gap-2">
             <label className="text-lg font-medium leading-3 sr-only">Target Chain</label>
             <Input
             className="flex" label="Chain" icon={ <Menu
@@ -90,7 +98,46 @@ disabled
  <p className="text-sm font-normal leading-tight">No network connected</p>
 }
            
+        </div> */}
+        <div className=''>
+        <Select
+        className=''
+        label='Active network'
+        color='green'
+        >
+            {chains && (
+                chains.map((chain, idx) => (
+                    <Option
+                    key={idx}
+                    onClick={()=>switchandclose(chain)}
+                    className=""
+                    >
+                         {chain.name}
+                    </Option>
+                ))
+                )}
+      </Select>
+      {chain ?
+<div className='flex items-center gap-1 pt-1'>
+<p className="text-sm font-normal leading-tight">Connected to {chain.name}</p>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 fill-[#6f6] text-[#6f6] animate-pulse mr-2">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+</svg>
+
+<Tooltip content="Make sure wallet is connected to target chain">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+</svg>
+
+</Tooltip>
+</div> :
+ <p className="text-sm font-normal leading-tight">No network connected</p>
+}
+</div>
+        <div>
+
         </div>
+
         <div className="flex flex-col gap-2">
             <label className="text-lg font-medium leading-3 sr-only">Token Name</label>
             <Input
@@ -98,7 +145,7 @@ disabled
             onChange={onChangeHandler}
             value={formData.tokenName}
             required
-            className="placeholder:opacity-0 focus:placeholder:opacity-100 placeholder:text-white" color="green" label="Token Name" placeholder="GUILD" />
+            className="placeholder:opacity-0 focus:placeholder:opacity-100 placeholder:text-gray-500" color="green" label="Token Name" placeholder="GUILD" />
             <p className="font-semibold text-xs leading-tight">Choose a name for your token</p>
         </div>
         <div className="flex flex-col gap-2">
@@ -108,7 +155,7 @@ disabled
              onChange={onChangeHandler}
             value={formData.tokenSymbol}
             required
-            className="placeholder:opacity-0 focus:placeholder:opacity-100 placeholder:text-white" color="green" label="Symbol" placeholder="GLD" />
+            className="placeholder:opacity-0 focus:placeholder:opacity-100 placeholder:text-gray-500" color="green" label="Symbol" placeholder="GLD" />
             <p className="font-semibold text-xs leading-tight">Choose symbol for your token</p>
         </div>
         <div className="flex flex-col gap-2">
@@ -118,18 +165,39 @@ disabled
              onChange={onChangeHandler}
             value={formData.decimal}
             required
-            className="placeholder:opacity-0 focus:placeholder:opacity-100 placeholder:text-white" color="green" label="Decimals" placeholder="8-18" />
+            className="placeholder:opacity-0 focus:placeholder:opacity-100 placeholder:text-gray-500" color="green" label="Decimals" placeholder="8-18" />
             <p className="font-semibold text-xs leading-tight">Choose symbol for your token</p>
         </div>
         <div className="flex flex-col gap-2">
             <label className="text-lg font-medium leading-3 sr-only">Decimal</label>
             <Input
-             name="Supply"
+             name="supply"
              onChange={onChangeHandler}
             value={formData.supply}
             required
-            className="placeholder:opacity-0 focus:placeholder:opacity-100 placeholder:text-white" color="green" label="Supply" placeholder="" />
-            <p className="font-semibold text-xs leading-tight">Choose token Supply</p>
+            className="placeholder:opacity-0 focus:placeholder:opacity-100 placeholder:text-gray-500" color="green" label="Supply" placeholder="" />
+            <p className="font-semibold text-xs leading-tight">Choose token supply</p>
+        </div>
+
+        <div className='flex gap-8'>
+        {/* <div className='flex items-center'> */}
+            <Tooltip content="Ability to mint more tokens">
+            <Checkbox
+            label="mint"
+            color="green"
+            className='-ml-1'
+            defaultChecked />
+            </Tooltip>
+        {/* </div> */}
+        {/* <div className='flex items-center'> */}
+            <Tooltip content="Ability to burn tokens">
+            <Checkbox
+             label="burn"
+             color="green"
+            className='-ml-1'
+            defaultChecked />
+            </Tooltip>
+        {/* </div> */}
         </div>
     </div>
     </div>

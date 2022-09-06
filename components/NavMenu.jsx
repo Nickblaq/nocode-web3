@@ -8,7 +8,7 @@ import {BsThreeDots} from 'react-icons/bs'
 import { useIsMounted } from "../hooks/useIsMounted";
 
 const NavMenu = () => {
-  let [isOpen, setIsOpen] = useState(true)
+  let [isOpen, setIsOpen] = useState(false)
   const [state, setState] = useState(false)
 
 
@@ -96,12 +96,12 @@ const NavMenu = () => {
                           <div className="mr-8">{navList}</div>
                           <p
                         onClick={openModal}
-                        className=" text-lg font-semibold px-2 py-1 rounded-lg border border-opacity-70 border-gray-500">{isConnected ? 'Account' : 'Connect'}</p>
+                        className=" text-lg font-semibold px-2 py-1 rounded-lg border border-opacity-70 border-gray-500 cursor-pointer">{isConnected ? 'Account' : 'Connect'}</p>
                           </div>
                         <div className="md:hidden flex items-center justify-center gap-3">
                         <p
                         onClick={openModal}
-                        className="text-lg font-semibold px-2 py-1 rounded-lg border border-opacity-70 border-gray-500">{isConnected ? 'Account' : 'Connect'}</p>
+                        className="text-lg font-semibold px-2 py-1 rounded-lg border border-opacity-70 border-gray-500 cursor-pointer">{isConnected ? 'Account' : 'Connect'}</p>
                         <Menu
                         open= {state}
                         animate={{
@@ -157,12 +157,14 @@ const NavMenu = () => {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-                    <div className="relative w-full max-w-lg p-4 mx-auto bg-gray-900 rounded-md shadow-lg">
+                    <div className="relative w-full max-w-lg p-4 mx-auto bg-gray-900 rounded-md shadow-lg border border-opacity-70 border-gray-500">
                         <div className="mt-3">
                             <Dialog.Title>
-                            <div className="flex items-center justify-between h-12 mx-auto px-3">
-                                <p className='text-xl font-bold'>Connect your wallet</p>
-                                <div onClick={closeModal}>
+                            <div className="flex items-center justify-between h-12 mx-auto px-8">
+                                <p className='text-xl font-bold'>{isConnected ? 'User profile' : 'Connect your wallet'}</p>
+                                <div
+                                className="justify-self-end"
+                                onClick={closeModal}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
 </svg>
@@ -192,21 +194,34 @@ const NavMenu = () => {
       }
 {/* <p> Balance: {data?.formatted} {data?.symbol}</p> */}
       <div className='text-center'>{chainError && chainError.message}</div>
-        <div className='pb-6'>
-            User Connected address: {" "}
+        <div className='pb-6 flex items-center justify-center gap-4'>
+            {/* User Connected address: {" "} */}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+  <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
+</svg>
+
+
             {
             truncateAddress(address)
         }</div>
-        <div className='pb-6'>Connected to {connector?.name} wallet</div>
-        {chain && <div className='pb-6'>Connected on {chain?.name}</div>}
-        <div className='flex justify-between'>
-        <button
-        className='bg-[#24ff00] py-2 px-2  rounded-sm mt-4 mb-2'
-        onClick={disconnect}>Disconnect</button>
+        <div className='pb-6 flex items-center justify-center gap-4'>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+  <path d="M2.273 5.625A4.483 4.483 0 015.25 4.5h13.5c1.141 0 2.183.425 2.977 1.125A3 3 0 0018.75 3H5.25a3 3 0 00-2.977 2.625zM2.273 8.625A4.483 4.483 0 015.25 7.5h13.5c1.141 0 2.183.425 2.977 1.125A3 3 0 0018.75 6H5.25a3 3 0 00-2.977 2.625zM5.25 9a3 3 0 00-3 3v6a3 3 0 003 3h13.5a3 3 0 003-3v-6a3 3 0 00-3-3H15a.75.75 0 00-.75.75 2.25 2.25 0 01-4.5 0A.75.75 0 009 9H5.25z" />
+</svg>
 
+
+           {connector?.name} wallet</div>
+        {chain && <div className='pb-6 flex items-center justify-center gap-4'>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+  <path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z" />
+</svg>
+
+
+        {chain?.name}</div>}
+        <div className=''>
         <button
-        className='bg-red-500 py-2 px-2  rounded-sm mt-4 mb-2'
-        onClick={closeModal}>Close</button>
+        className='text-lg font-semibold px-2 py-1 rounded-lg border border-opacity-70 border-gray-500'
+        onClick={disconnect}>Disconnect</button>
         </div>
       </div>
     )
