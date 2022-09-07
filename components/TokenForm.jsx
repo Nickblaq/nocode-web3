@@ -7,7 +7,8 @@ import {ethers, Contract} from 'ethers'
 import { useAccount, useNetwork, useSwitchNetwork, useSigner } from "wagmi";
 import CustomFactory from '../abi/CustomFactory.json'
 // let provider = 'https://polygon-mumbai.g.alchemy.com/v2/ej5WjrTNfIunsEYL4M_89XRgLAZTZhIP'
-const FactoryAddress = "0x9EE2Ec43947947B1E2026919fBE48F8F41e95F27";
+// const FactoryAddress = "0x9EE2Ec43947947B1E2026919fBE48F8F41e95F27";
+const FactoryAddress = "0xaf75b7d3e2109ae7c49fdea6dd91c81c528c95e1";
 
 
 const TokenForm = () => {

@@ -35,6 +35,25 @@ const smartChainChain = {
   testnet: false,
 }
 
+const smartTestChain = {
+  id: 97,
+  name: 'Binance_Testnet',
+  network: 'Binance_Testnet',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'Binance_Testnet',
+    symbol: 'BSC_Testnet',
+  },
+  rpcUrls: {
+    default: 'https://data-seed-prebsc-2-s3.binance.org:8545/',
+  },
+  blockExplorers: {
+    default: { name: 'BscTestnetScan', url: 'https://testnet.bscscan.com' },
+  },
+  testnet: false,
+}
+
+
 
 // Configure chains & providers with the Alchemy provider.
 // Two popular providers are Alchemy (alchemy.com) and Infura (infura.io)
@@ -45,6 +64,7 @@ const { chains, provider, webSocketProvider } = configureChains(
     // chain.mainnet,
     chain.polygon,
     smartChainChain,
+    smartTestChain,
     // chain.optimism,
     // chain.arbitrum,
     
