@@ -1,11 +1,21 @@
-
-import { useNetwork, useSwitchNetwork } from 'wagmi'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {Tooltip,Button,Input,  Select, Option, Checkbox} from "@material-tailwind/react";
+
+
+
+import {ethers, Contract} from 'ethers'
+import { useAccount, useNetwork, useSwitchNetwork, useSigner } from "wagmi";
+import CustomFactory from '../abi/CustomFactory.json'
+// let provider = 'https://polygon-mumbai.g.alchemy.com/v2/ej5WjrTNfIunsEYL4M_89XRgLAZTZhIP'
+const FactoryAddress = "0x9EE2Ec43947947B1E2026919fBE48F8F41e95F27";
+
+
 const TokenForm = () => {
     
     const [state, setState] = useState(false)
     const { chain, chains } = useNetwork()
+    const {address} = useAccount()
+    const { data: signer } = useSigner()
     const { chains: switchchains, error, isLoading, pendingChainId, switchNetwork } =
     useSwitchNetwork()
     //state for form data
@@ -37,12 +47,29 @@ const TokenForm = () => {
     switchNetwork?.(x.id)
     setState(false)
   }
-  const checkdata =()=>{
-    console.log(formData)
-  }
+    
+  //   const init = async () => {
+  //     if (!address) return null
+  //     const contract = new Contract(FactoryAddress, CustomFactory.abi, signer);
+  //     const {tokenName, tokenSymbol, decimal, mint, burn, supply} = formData
+  //     const factory = init()
+  //     const tx = await contract.createToken(tokenName, tokenSymbol, decimal, mint, burn, supply)
+  //     console.log(tx)
+  // }
 
-  
 
+  async function claim () {
+    try {
+        const contract = await new Contract(FactoryAddress, CustomFactory.abi, signer);
+        const {tokenName, tokenSymbol, decimal, mint, burn, supply} = formData
+        let response = await contract.create(tokenName, tokenSymbol, decimal, mint, burn, supply)
+        let hash = response.hash
+        console.log(hash)
+
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
     return (
@@ -225,7 +252,7 @@ disabled
 
 
 <Button
-onClick={checkdata}
+onClick={claim}
 ripple={true} color="green" className="">
 <p>Create</p>
 </Button>
