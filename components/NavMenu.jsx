@@ -43,7 +43,7 @@ const NavMenu = () => {
       { title: "Create", path: "/createcoin" },
           { title: "My Contracts", path: "/contracts" },
       { title: "Swap", path: "/swap" },
-      { title: "Locked Liquidity", path: "/locked" },
+      { title: "vesting", path: "/vesting" },
   
   ]
 
@@ -73,7 +73,7 @@ const NavMenu = () => {
         className="p-1 font-normal"
       >
         <Link href="/locked" className="flex items-center">
-          Locked Liquidity
+          Vesting
         </Link>
       </Typography>
     </ul>

@@ -1,7 +1,7 @@
 
 
 
-const Locked = () => {
+const Vesting = () => {
 
     return (
         <>
@@ -13,7 +13,7 @@ const Locked = () => {
 </svg>
         
 				<h1 className="text-4xl font-bold uppercase transition duration-500">Coming Soon</h1>
-        <h2 className="text-xl transition duration-500">We are almost there to introduce our new multi-chain swap features to the world, in the meantime, you can follow us on social networks to get the latest updates.</h2>
+        <h2 className="text-xl transition duration-500">We are almost there to introduce our new multi-chain vesting features to the world, in the meantime, you can follow us on social networks to get the latest updates.</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           
             
