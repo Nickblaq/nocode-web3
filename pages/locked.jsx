@@ -1,7 +1,7 @@
 
 
 
-const Vesting = () => {
+const Locked = () => {
 
     return (
         <>
