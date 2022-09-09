@@ -57,17 +57,27 @@ const TokenForm = () => {
   //     const tx = await contract.createToken(tokenName, tokenSymbol, decimal, mint, burn, supply)
   //     console.log(tx)
   // }
+  function returnBigNumber (value) {
+    return ethers.BigNumber.from(value)
+  }
+
+  // calculate percentage on the fly
+
+  function calculatePercentage (percentage, value) {
+    return ethers.BigNumber.from(value).mul(percentage).div(100)  
+  }
+
+
 
 
   async function claim () {
     try {
       const {tokenName, tokenSymbol, decimal, mint, burn, supply} = formData
         const contract = await new Contract(FactoryAddress, CustomFactory.abi, signer);
-        const gasLimit = contract.estimateGas.create(tokenName, tokenSymbol, decimal, mint, burn, supply);
+        const gas = contract.estimateGas.create(tokenName, tokenSymbol, decimal, mint, burn, supply);
 
-        let response = await contract.create(tokenName, tokenSymbol, decimal, mint, burn, supply, {
-          gasLimit,
-          });
+        let response = await contract.create(tokenName, tokenSymbol, decimal, mint, burn, supply,
+           { gasLimit: 2134638  });
         let hash = response.hash
         console.log(hash)
 
