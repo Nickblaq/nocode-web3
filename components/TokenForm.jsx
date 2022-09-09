@@ -8,7 +8,7 @@ import { useAccount, useNetwork, useSwitchNetwork, useSigner } from "wagmi";
 import CustomFactory from '../abi/CustomFactory.json'
 // let provider = 'https://polygon-mumbai.g.alchemy.com/v2/ej5WjrTNfIunsEYL4M_89XRgLAZTZhIP'
 // const FactoryAddress = "0x9EE2Ec43947947B1E2026919fBE48F8F41e95F27";
-const FactoryAddress = "0xaf75b7d3e2109ae7c49fdea6dd91c81c528c95e1";
+const FactoryAddress = "0xCD1C3Cda3E5DcF7be57f25D146F84Cf4eFCe8761";
 
 
 const TokenForm = () => {
@@ -75,9 +75,12 @@ const TokenForm = () => {
       const {tokenName, tokenSymbol, decimal, mint, burn, supply} = formData
         const contract = await new Contract(FactoryAddress, CustomFactory.abi, signer);
         const gas = contract.estimateGas.create(tokenName, tokenSymbol, decimal, mint, burn, supply);
-
+        let amount = ethers.utils.parseEther('0.1');
         let response = await contract.create(tokenName, tokenSymbol, decimal, mint, burn, supply,
-           { gasLimit: 2134638  });
+           { 
+            value: amount,
+            gasLimit: 2134638
+            });
         let hash = response.hash
         console.log(hash)
 

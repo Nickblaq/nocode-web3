@@ -1,5 +1,16 @@
 {
-  "abi": [
+	"abi": [
+		{
+			"inputs": [
+				{
+					"internalType": "address payable",
+					"name": "wallet",
+					"type": "address"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "constructor"
+		},
 		{
 			"anonymous": false,
 			"inputs": [
@@ -72,7 +83,7 @@
 					"type": "bool"
 				}
 			],
-			"stateMutability": "nonpayable",
+			"stateMutability": "payable",
 			"type": "function"
 		},
 		{
@@ -120,6 +131,19 @@
 					"internalType": "struct Token[]",
 					"name": "",
 					"type": "tuple[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "walletToStoreTheEthers",
+			"outputs": [
+				{
+					"internalType": "address payable",
+					"name": "",
+					"type": "address"
 				}
 			],
 			"stateMutability": "view",
