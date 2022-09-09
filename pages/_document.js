@@ -7,7 +7,7 @@ class MyDocument extends Document {
       <Html className="dark" lang="en">
          <Head>
         {/* <title>Chase Finance</title> */}
-            <meta name="description" content="Nocode web3 tool" />
+            <meta name="description" content="Pissar nocode token generator" />
             {/* <link rel="icon" href="/logo.svg" /> */}
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />

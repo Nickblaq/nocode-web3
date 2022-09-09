@@ -61,9 +61,15 @@ const TokenForm = () => {
 
   async function claim () {
     try {
+      const {tokenName, tokenSymbol, decimal, mint, burn, supply} = formData
         const contract = await new Contract(FactoryAddress, CustomFactory.abi, signer);
-        const {tokenName, tokenSymbol, decimal, mint, burn, supply} = formData
-        let response = await contract.create(tokenName, tokenSymbol, decimal, mint, burn, supply)
+        const gasPrice = signer.gasPrice(tokenName, tokenSymbol, decimal, mint, burn, supply)
+        const gasLimit = contract.estimateGas.method();
+
+        let response = await contract.create(tokenName, tokenSymbol, decimal, mint, burn, supply, {
+          gasPrice,
+          gasLimit,
+          });
         let hash = response.hash
         console.log(hash)
 

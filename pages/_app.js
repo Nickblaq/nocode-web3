@@ -125,7 +125,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
     <Head>
-        <title>Chase Fintoken</title>
+        <title>Pissar</title>
       </Head>
      
     <ThemeProvider>
