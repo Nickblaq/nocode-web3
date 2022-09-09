@@ -73,7 +73,7 @@ const NavMenu = () => {
         className="p-1 font-normal"
       >
         <Link href="/locked" className="flex items-center">
-          Vesting
+          Locked
         </Link>
       </Typography>
     </ul>
