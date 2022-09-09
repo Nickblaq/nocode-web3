@@ -63,11 +63,9 @@ const TokenForm = () => {
     try {
       const {tokenName, tokenSymbol, decimal, mint, burn, supply} = formData
         const contract = await new Contract(FactoryAddress, CustomFactory.abi, signer);
-        const gasPrice = signer.gasPrice(tokenName, tokenSymbol, decimal, mint, burn, supply)
-        const gasLimit = contract.estimateGas.method();
+        const gasLimit = contract.estimateGas.create(tokenName, tokenSymbol, decimal, mint, burn, supply);
 
         let response = await contract.create(tokenName, tokenSymbol, decimal, mint, burn, supply, {
-          gasPrice,
           gasLimit,
           });
         let hash = response.hash
