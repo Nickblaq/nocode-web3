@@ -71,8 +71,11 @@ export default function Home() {
     <div className="max-w-lg mx-auto text-center">
       <h2 className="text-3xl font-bold sm:text-4xl text-[#1ab675]">Features</h2>
 
-      <p className="mt-4 text-gray-300">
+      <p className="mt-4 text-gray-300 text 2xl font-semibold">
        A no-code token generator that allows people from diverse backgrounds to create their tokens without needing to write any line of code.
+       Once connected, users will have access to all the features that exist on the dApp.
+
+With this solution, users will be able to specify the properties of the token they would like to create, deploy smart contracts that create virtual tokens without needing to write any line of code.
       </p>
     </div>
 

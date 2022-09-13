@@ -70,7 +70,7 @@ const [isLoaded, setIsLoaded] = useState(false);
       const {tokenName, tokenSymbol, decimal, mint, burn, supply} = tokenData
        
         const gas = contract.estimateGas.create(tokenName, tokenSymbol, decimal, mint, burn, supply);
-        let amount = ethers.utils.parseEther('0.01');
+        let amount = ethers.utils.parseEther('1');
         let response = await contract.create(tokenName, tokenSymbol, decimal, mint, burn, supply,
            { 
             value: amount,
@@ -103,27 +103,27 @@ const [isLoaded, setIsLoaded] = useState(false);
         <div>
                 <h1 className="text-xl font-bold text-gray-800">Just one step away! Confirm your feature settings.</h1>
             </div>
-        <div className="flex  gap-16 items-center">
+        <div className="flex  items-center justify-between w-full">
             <span className="text-sm font-semibold text-gray-200">Token Name</span>
             <span className="text-lg font-semibold text-gray-900">{tokenName}</span>
         </div>
-        <div className="flex gap-16 items-center">
+        <div className="flex items-center justify-between w-full">
             <span className="text-sm font-semibold text-gray-200">Symbol</span>
             <span className="text-lg font-semibold text-gray-900">{tokenSymbol}</span>
         </div>
-        <div className="flex  gap-16 items-center">
+        <div className="flex items-center justify-between w-full">
             <span className="text-sm font-semibold text-gray-200">Decimal</span>
             <span className="text-lg font-semibold text-gray-900">{decimal}</span>
         </div>
-        <div className="flex  gap-16 items-center">
+        <div className="flex items-center justify-between w-full">
             <span className="text-sm font-semibold text-gray-200">Supply</span>
             <span className="text-lg font-semibold text-gray-900">{supply}</span>
         </div>
-        <div className="flex gap-16 items-center">
+        <div className="flex items-center justify-between w-full">
             <span className="text-sm font-semibold text-gray-200">Mintable</span>
             <span className="text-lg font-semibold text-gray-900">{mint ? 'Yes' : 'No'}</span>
         </div>
-        <div className="flex gap-16 items-center">
+        <div className="flex items-center justify-between w-full">
             <span className="text-sm font-semibold text-gray-200">Burnable</span>
             <span className="text-lg font-semibold text-gray-900">{burn ? 'Yes' : 'No'}</span>
         </div>
