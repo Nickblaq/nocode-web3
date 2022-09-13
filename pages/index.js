@@ -15,7 +15,7 @@ export default function Home() {
 
 
   return (
-   <div className=''>
+   <div className='animate__animated animate__fadeInUp'>
    <section>
   <div className="px-4 pt-16 md:pb-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
     <div className="grid grid-cols-1 gap-8 lg:gap-16 lg:grid-cols-2">
@@ -30,7 +30,7 @@ export default function Home() {
       </div>
 
       <div className="lg:py-24">
-        <h2 className="text-3xl font-bold sm:text-4xl">BINANCE TOKEN GENERATOR</h2>
+        <h2 className="text-3xl font-bold sm:text-4xl text-[#1ab675]">BINANCE TOKEN GENERATOR</h2>
 
         <p className="mt-4">
         Our mission is to make token creation easy and accessible for everyone. You can create your own token without coding.

@@ -20,7 +20,7 @@ const TokenInput = ({ tokenData, setTokenData, nextStep}) => {
     return (
         <>
 
-<div className="block p-6 rounded-lg bg-gray-200 shadow-lg max-w-xl">
+<div className="animate__animated animate__fadeIn block p-6 rounded-lg bg-gray-200 shadow-lg max-w-xl">
   <div>
     <div className="mb-6">
       <label  className="form-label inline-block mb-2 text-gray-700">Token name</label>
