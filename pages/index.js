@@ -38,7 +38,7 @@ export default function Home() {
 
       <Link href='/createcoin'>
         <div
-          className="inline-flex items-center px-8 py-3 mt-8 text-white bg-indigo-600 border border-indigo-600 rounded hover:bg-transparent hover:text-indigo-600 active:text-indigo-500 focus:outline-none focus:ring"
+          className="inline-flex items-center px-8 py-3 mt-8 text-white bg-[#1ab675] border border-indigo-600 rounded hover:bg-transparent hover:text-indigo-600 active:text-indigo-500 focus:outline-none focus:ring"
           href="/get-started"
         >
           <span className="text-sm font-medium"> Get Started </span>
@@ -69,7 +69,7 @@ export default function Home() {
 <section className="">
   <div className="px-4 py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
     <div className="max-w-lg mx-auto text-center">
-      <h2 className="text-3xl font-bold sm:text-4xl">Features</h2>
+      <h2 className="text-3xl font-bold sm:text-4xl text-[#1ab675]">Features</h2>
 
       {/* <p class="mt-4 text-gray-300">
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur
@@ -82,9 +82,9 @@ export default function Home() {
       <div
         className="block p-8 border border-gray-800 shadow-xl transition rounded-xl hover:shadow-pink-500/10 hover:border-pink-500/10"
       >
-        <FaLaptopCode className='h-8 w-8' />
+        <FaLaptopCode className='h-8 w-8 text-[#1ab675]' />
 
-        <h3 className="mt-4 text-xl font-bold text-white">No coding required</h3>
+        <h3 className="mt-4 text-xl font-bold text-[#1ab675]">No coding required</h3>
 
         <p className="mt-1 text-sm text-gray-300">
         You don`&apos;`t need to be a developer or have any programming knowledge.
@@ -94,9 +94,9 @@ export default function Home() {
       <div
         className="block p-8 border border-gray-800 shadow-xl transition rounded-xl hover:shadow-pink-500/10 hover:border-pink-500/10"
       >
-        <RiMoneyDollarCircleLine className='h-8 w-8' />
+        <RiMoneyDollarCircleLine className='h-8 w-8 text-[#1ab675]' />
 
-        <h3 className="mt-4 text-xl font-bold text-white">Make money</h3>
+        <h3 className="mt-4 text-xl font-bold text-[#1ab675]">Make money</h3>
 
         <p className="mt-1 text-sm text-gray-300">
         Potential to make millions of dollar with your own tokens!
@@ -106,9 +106,9 @@ export default function Home() {
       <div
         className="block p-8 border border-gray-800 shadow-xl transition rounded-xl hover:shadow-pink-500/10 hover:border-pink-500/10"
       >
-        <BsEmojiSmile className='h-8 w-8' />
+        <BsEmojiSmile className='h-8 w-8 text-[#1ab675]' />
 
-        <h3 className="mt-4 text-xl font-bold text-white">Be proud</h3>
+        <h3 className="mt-4 text-xl font-bold text-[#1ab675]">Be proud</h3>
 
         <p className="mt-1 text-sm text-gray-300">
         Share your tokens with your family, friends and the world.
@@ -119,9 +119,9 @@ export default function Home() {
        className="block p-8 border border-gray-800 shadow-xl transition rounded-xl hover:shadow-pink-500/10 hover:border-pink-500/10"
         href="/services/digital-campaigns"
       >
-        <AiOutlineSafety className='h-8 w-8' />
+        <AiOutlineSafety className='h-8 w-8 text-[#1ab675]' />
 
-        <h3 className="mt-4 text-xl font-bold text-white">Safe</h3>
+        <h3 className="mt-4 text-xl font-bold text-[#1ab675]">Safe</h3>
 
         <p className="mt-1 text-sm text-gray-300">
         All contracts are fully tested and audited.

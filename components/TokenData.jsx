@@ -99,32 +99,32 @@ const [isLoaded, setIsLoaded] = useState(false);
       </div>
         : 
             
-        <div className="animate__animated animate__fadeIn flex flex-col items-center p-4 gap-8 bg-white border rounded-md shadow-sm">
+        <div className="animate__animated animate__fadeIn flex flex-col items-center p-4 gap-8 bg-[#1ab675] border rounded-md shadow-sm">
         <div>
                 <h1 className="text-xl font-bold text-gray-800">Just one step away! Confirm your feature settings.</h1>
             </div>
         <div className="flex  gap-16 items-center">
-            <span className="text-sm font-semibold text-gray-500">Token Name</span>
+            <span className="text-sm font-semibold text-gray-200">Token Name</span>
             <span className="text-lg font-semibold text-gray-900">{tokenName}</span>
         </div>
         <div className="flex gap-16 items-center">
-            <span className="text-sm font-semibold text-gray-500">Symbol</span>
+            <span className="text-sm font-semibold text-gray-200">Symbol</span>
             <span className="text-lg font-semibold text-gray-900">{tokenSymbol}</span>
         </div>
         <div className="flex  gap-16 items-center">
-            <span className="text-sm font-semibold text-gray-500">Decimal</span>
+            <span className="text-sm font-semibold text-gray-200">Decimal</span>
             <span className="text-lg font-semibold text-gray-900">{decimal}</span>
         </div>
         <div className="flex  gap-16 items-center">
-            <span className="text-sm font-semibold text-gray-500">Supply</span>
+            <span className="text-sm font-semibold text-gray-200">Supply</span>
             <span className="text-lg font-semibold text-gray-900">{supply}</span>
         </div>
         <div className="flex gap-16 items-center">
-            <span className="text-sm font-semibold text-gray-500">Mintable</span>
+            <span className="text-sm font-semibold text-gray-200">Mintable</span>
             <span className="text-lg font-semibold text-gray-900">{mint ? 'Yes' : 'No'}</span>
         </div>
         <div className="flex gap-16 items-center">
-            <span className="text-sm font-semibold text-gray-500">Burnable</span>
+            <span className="text-sm font-semibold text-gray-200">Burnable</span>
             <span className="text-lg font-semibold text-gray-900">{burn ? 'Yes' : 'No'}</span>
         </div>
 
@@ -142,7 +142,7 @@ const [isLoaded, setIsLoaded] = useState(false);
         disabled={isLoaded || !address}
             onClick={claim}
             className="flex items-center  text-gray-400 transition-colors duration-200 rounded hover:text-gray-500 bg-gray-900 px-4 py-2 w-full">
-                Create
+               {address ? 'Confirm' : 'Connect Wallet'}
                 </button>
         </div>
 </div>

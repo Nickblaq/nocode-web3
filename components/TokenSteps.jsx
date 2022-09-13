@@ -58,7 +58,7 @@ const TokenSteps = ({step, setStep}) => {
         <>
             <div className="w-full max-w-xl mx-auto my-10">
             <div className="px-4 md:px-10 pb-6 rounded-xl">
-            <TokenInput nextStep={nextStep} handleFormData={handleInputData} values={formData} onChangeHandler={onChangeHandler} />
+            <TokenInput tokenData={tokenData} setTokenData={setTokenData} nextStep={nextStep}  />
             </div>
         </div>
             </>
