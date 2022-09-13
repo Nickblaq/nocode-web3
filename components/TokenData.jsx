@@ -5,7 +5,8 @@ import { useAccount, useSigner } from "wagmi";
 import { useRouter } from 'next/router'
 
 
-const FactoryAddress = "0xbd29e6a18cef0649c5e67749a1a059d05f07d80c";
+const FactoryAddress = "0x1ba4976bb55016646b80c4E937c36d1067601D28";
+// const FactoryAddress = "0xbd29e6a18cef0649c5e67749a1a059d05f07d80c";
 
 const TokenData = ({ tokenData, nextStep}) => {
     const {tokenName, tokenSymbol, decimal, mint, burn, supply} = tokenData
