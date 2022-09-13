@@ -33,7 +33,7 @@ export default function Home() {
         <h2 className="text-3xl font-bold sm:text-4xl text-[#1ab675]">BINANCE TOKEN GENERATOR</h2>
 
         <p className="mt-4">
-        Our mission is to make token creation easy and accessible for everyone. You can create your own token without coding.
+        Our mission is to make token creation easy and accessible for everyone. You can create your own token in less than 1 minute.
         </p>
 
       <Link href='/createcoin'>
@@ -71,11 +71,9 @@ export default function Home() {
     <div className="max-w-lg mx-auto text-center">
       <h2 className="text-3xl font-bold sm:text-4xl text-[#1ab675]">Features</h2>
 
-      {/* <p class="mt-4 text-gray-300">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur
-        aliquam doloribus nesciunt eos fugiat. Vitae aperiam fugit consequuntur
-        saepe laborum.
-      </p> */}
+      <p className="mt-4 text-gray-300">
+       A no-code token generator that allows people from diverse backgrounds to create their tokens without needing to write any line of code.
+      </p>
     </div>
 
     <div className="mt-7 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -87,7 +85,7 @@ export default function Home() {
         <h3 className="mt-4 text-xl font-bold text-[#1ab675]">No coding required</h3>
 
         <p className="mt-1 text-sm text-gray-300">
-        You don`&apos;`t need to be a developer or have any programming knowledge.
+        You don&apos;t need to be a developer or have any programming knowledge.
         </p>
       </div>
 
