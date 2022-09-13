@@ -40,10 +40,13 @@ const NavMenu = () => {
 
   // Replace javascript:void(0) path with your path
   const navigation = [
-      { title: "Create", path: "/createcoin" },
-          { title: "My Contracts", path: "/contracts" },
-      { title: "Swap", path: "/swap" },
-      { title: "vesting", path: "/vesting" },
+      { title: "Create", path: "/createcoin", },
+          { title: "Support", path: "https://twitter.com/usepissar/",
+        target: "_blank",
+        rel:"noreferrer",
+        },
+      // { title: "Swap", path: "/swap" },
+      // { title: "vesting", path: "/vesting" },
   
   ]
 
@@ -63,6 +66,19 @@ const NavMenu = () => {
         variant="small"
         className="p-1 font-normal"
       >
+        <a
+          href="https://twitter.com/usepissar/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Support
+        </a>
+      </Typography>
+      {/* <Typography
+        as="li"
+        variant="small"
+        className="p-1 font-normal"
+      >
         <Link href="/swap" className="flex items-center">
           Swap
         </Link>
@@ -75,13 +91,15 @@ const NavMenu = () => {
         <Link href="/locked" className="flex items-center">
           Locked
         </Link>
-      </Typography>
+      </Typography> */}
     </ul>
   );
   //  <p className="text-lg font-semibold px-2 py-1 rounded-lg border border-opacity-70 border-gray-500">Open Menu</p>
 
     return (
         <>
+        {isMounted && 
+        <div>
         <header>
                 <nav className="items-center pt-5 px-4 mx-auto max-w-screen-xl sm:px-8 md:space-x-6">
                     <div className="flex justify-between md:gap-32">
@@ -127,6 +145,8 @@ const NavMenu = () => {
             onClick={()=>setState(false)}
             className="hover:bg-gray-700 active:bg-gray-700 ">
             {item.title}
+            {item.target && <a target={item.target} rel={item.rel}></a>}
+            
             </MenuItem>
             </Link>
         ))
@@ -277,6 +297,8 @@ const NavMenu = () => {
 
         </Dialog>
         </Transition>
+    </div>
+}
         </>
     )
 }

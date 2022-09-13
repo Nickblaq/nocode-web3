@@ -6,6 +6,7 @@ import 'nprogress/nprogress.css'; //styles of nprogress
 import { ThemeProvider } from "@material-tailwind/react";
 import NavMenu from '../components/NavMenu'
 import Footer from '../components/Footer';
+import 'animate.css'
 
 import {WagmiConfig,createClient,defaultChains,configureChains,chain} from 'wagmi'
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
@@ -59,10 +60,10 @@ const smartTestChain = {
 // Two popular providers are Alchemy (alchemy.com) and Infura (infura.io)
 const { chains, provider, webSocketProvider } = configureChains( 
   [
-    chain.mainnet,
-    chain.polygonMumbai,
     // chain.mainnet,
-    chain.polygon,
+    // chain.polygonMumbai,
+    // chain.mainnet,
+    // chain.polygon,
     smartChainChain,
     smartTestChain,
     // chain.optimism,
@@ -132,7 +133,7 @@ function MyApp({ Component, pageProps }) {
     <WagmiConfig client={client}>
     <NavMenu />
     <Component {...pageProps} />
-    <Footer />
+    {/* <Footer /> */}
     </WagmiConfig>
     </ThemeProvider>
     </>

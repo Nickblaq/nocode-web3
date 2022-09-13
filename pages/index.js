@@ -5,8 +5,13 @@ import {RiMoneyDollarCircleLine} from 'react-icons/ri'
 import {BsEmojiSmile} from 'react-icons/bs'
 import {AiOutlineSafety} from 'react-icons/ai'
 import Link from 'next/link'
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
+
+
+  
 
 
   return (
@@ -25,7 +30,7 @@ export default function Home() {
       </div>
 
       <div className="lg:py-24">
-        <h2 className="text-3xl font-bold sm:text-4xl">Create your token</h2>
+        <h2 className="text-3xl font-bold sm:text-4xl">BINANCE TOKEN GENERATOR</h2>
 
         <p className="mt-4">
         Our mission is to make token creation easy and accessible for everyone. You can create your own token without coding.
@@ -126,7 +131,17 @@ export default function Home() {
   </div>
 </section>
 
-
+<ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={true}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      />
    </div>
   )
 }

@@ -1,55 +1,139 @@
-
-
-
+import { useState, useEffect } from "react";
+import { ethers, Signer } from "ethers";
+import CustomFactory from '../abi/CustomFactory.json'
+import { useAccount, useProvider, useSigner } from "wagmi";
+// const provider = 'https://data-seed-prebsc-1-s1.binance.org:8545/';
+// let provider = 'https://polygon-mumbai.g.alchemy.com/v2/ej5WjrTNfIunsEYL4M_89XRgLAZTZhIP';
+const FactoryAddress = "0xbd29e6a18cef0649c5e67749a1a059d05f07d80c";
 const Contracts = () => {
+    const {address} = useAccount();
+    const provider = useProvider()
+    const { data: signer} = useSigner()
+    const [isName, setName] = useState();
+    const [isAddress, setAddress] = useState();
+    const [isSymbol, setSymbol] = useState();
+    const [isDecimal, setDecimal] = useState();
+    // const [contracts, setContracts] = useState();
+    const [loading, setLoading] = useState(true);
+
+    
+    const addToken = async () => {
+        try {
+  const wasAdded = await ethereum.request({
+    method: 'wallet_watchAsset',
+    params: {
+      type: 'ERC20', // Initially only supports ERC20, but eventually more!
+      options: {
+        address: isAddress, // The address that the token is at.
+        symbol: isSymbol, // A ticker symbol or shorthand, up to 5 chars.
+        decimals: isDecimal, // The number of decimals in the token
+        image: 'https://cryptologos.cc/logos/bnb-bnb-logo.svg?v=023', // A string url of the token logo
+      },
+    },
+  });
+
+  if (wasAdded) {
+    console.log('Thanks for your interest!');
+  } else {
+    console.log('Your loss!');
+  }
+} catch (error) {
+  console.log(error);
+}
+    };
+
+
+    const getContracts = async () => {
+
+        try {
+            setLoading(true);
+            const contract = new ethers.Contract(
+                FactoryAddress,
+                CustomFactory.abi,
+                signer
+            );
+            const tokens = await contract.getAll();
+            const [lastToken] = tokens.slice(-1);
+            console.log('this is contract', tokens);
+            // setSymbol(lastToken.symbol);
+            // setAddress(lastToken[6])
+            // setDecimal(lastToken.decimals)
+            
+            
+            setLoading(false);
+            // console.log('this is contract', );
+        } catch (error) {
+            setLoading(false);
+            console.log(error);
+        }
+        
+    }
+
+    useEffect(() => {
+            getContracts();
+    }, []);
+
+    
+    const truncateAddress = (oxAddress) => {
+        // This help solves the null error
+        if (oxAddress == null) return '';
+        return oxAddress.slice(0, 6) + "..." + oxAddress.slice(-5);
+      };
+    
+
+    // const get = () => {
+    //     return contracts.map((contract, index) => {
+    //         return (
+    //             <div key={index}>
+    //                 <p>{contract}</p>
+    //             </div>
+    //         )
+    //     })
+    // }
+
+
+            
+
+    
+
 
     return (
         <>
-       <div
-className="mb-10 block md:flex justify-center">
+        {loading ? (
+            <div className="flex justify-center items-center">
+                <div className="loader ease-linear rounded-full border-8 border-t-8 border-[#1ab675] h-12 w-12 mb-4"></div>
+                </div>
+                ) : (
+                    <div>
         
-
-
-        <div className="flex flex-col md:flex-row gap-4 px-4 md:px-8 mt-8">
-            <div className="w-full md:w-1/2 lg:w1/3 border-gray-500 py-2 px-4 rounded-lg border">
+               <div 
+               className="text-center grid grid-cols-1 gap-4 sm:grid-cols-2 mt-20 md:mt-32 px-2">
+            <div>
+            <div className="w-full block border-[#1ab675] py-2 px-4 rounded-lg border">
             <div className="flex items-center justify-between ">
-                <p className="text-sm font-semibold">Pissar</p>
-                <button className="px-2 py-1 rounded-xl bg-green-500">view</button>
+                <p className="text-sm font-semibold">{isName}</p>
+                <div className="flex items-center px-2 py-1 rounded-lg border border-[#1ab675]">
+                <img src="/binance.png" alt="arrow" className="w-4 h-4 mr-1" />
+                    <p className="text-sm font-semibold">{isSymbol}</p>
+                    
+                </div>
             </div>
+            <div className="">
             <div className="flex gap-2">
-            <p className="text-xs">Address: {" "} 0x268d...9f83</p>
+            <p className="text-xs">Address: {" "} {truncateAddress(isAddress)}</p>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
   <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 7.5V6.108c0-1.135.845-2.098 1.976-2.192.373-.03.748-.057 1.123-.08M15.75 18H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08M15.75 18.75v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5A3.375 3.375 0 006.375 7.5H5.25m11.9-3.664A2.251 2.251 0 0015 2.25h-1.5a2.251 2.251 0 00-2.15 1.586m5.8 0c.065.21.1.433.1.664v.75h-6V4.5c0-.231.035-.454.1-.664M6.75 7.5H4.875c-.621 0-1.125.504-1.125 1.125v12c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V16.5a9 9 0 00-9-9z" />
 </svg>
             </div>
-            </div>
-            <div className="w-full md:w-1/2 lg:w1/3 border-gray-500 py-2 px-4 rounded-lg border">
-            <div className="flex items-center justify-between ">
-                <p className="text-sm font-semibold">Pissar</p>
-                <button className="px-2 py-1 rounded-xl bg-green-500">view</button>
-            </div>
-            <div className="flex gap-2">
-            <p className="text-xs">Address: {" "} 0x268d...9f83</p>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 7.5V6.108c0-1.135.845-2.098 1.976-2.192.373-.03.748-.057 1.123-.08M15.75 18H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08M15.75 18.75v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5A3.375 3.375 0 006.375 7.5H5.25m11.9-3.664A2.251 2.251 0 0015 2.25h-1.5a2.251 2.251 0 00-2.15 1.586m5.8 0c.065.21.1.433.1.664v.75h-6V4.5c0-.231.035-.454.1-.664M6.75 7.5H4.875c-.621 0-1.125.504-1.125 1.125v12c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V16.5a9 9 0 00-9-9z" />
-</svg>
+            <button 
+            onClick={addToken}
+            className="ml-auto bg-[#1ab675] text-white px-2 py-1 rounded-lg w-full mt-3">Add to metamask</button>
             </div>
             </div>
-            <div className="w-full md:w-1/2 lg:w1/3 border-gray-500 py-2 px-4 rounded-lg border">
-            <div className="flex items-center justify-between ">
-                <p className="text-sm font-semibold">Pissar</p>
-                <button className="px-2 py-1 rounded-xl bg-green-500">view</button>
             </div>
-            <div className="flex gap-2">
-            <p className="text-xs">Address: {" "} 0x268d...9f83</p>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 7.5V6.108c0-1.135.845-2.098 1.976-2.192.373-.03.748-.057 1.123-.08M15.75 18H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08M15.75 18.75v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5A3.375 3.375 0 006.375 7.5H5.25m11.9-3.664A2.251 2.251 0 0015 2.25h-1.5a2.251 2.251 0 00-2.15 1.586m5.8 0c.065.21.1.433.1.664v.75h-6V4.5c0-.231.035-.454.1-.664M6.75 7.5H4.875c-.621 0-1.125.504-1.125 1.125v12c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V16.5a9 9 0 00-9-9z" />
-</svg>
+          </div>
             </div>
-            </div>
-           
-        </div>
-        </div>
+          )}
         </>
     )
 }

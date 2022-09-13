@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
-// import CreateToken from "../components/CreateToken"
-// import StepIndicator from "../components/formSteps/StepIndicator"
-import TokenForm from "../components/TokenForm";
-
-
+import TokenSteps from "../components/TokenSteps";
+import { useIsMounted } from "../hooks/useIsMounted";
 const CreateCoin = () => {
-    const [step, setstep] = useState(1);
+    const isMouinted = useIsMounted()
+    const [step, setStep] = useState(1);
     return (
         <>
-        <div className="flex flex-col justify-center mx-auto px-4">
-        <TokenForm />
+        {isMouinted && 
+        <div className="flex justify-center items-center md:h-screen mx-auto px-4">
+        <TokenSteps step={step} setStep={setStep} />
     </div>
+    }
         </>
     )
 }
