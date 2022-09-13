@@ -132,7 +132,7 @@ const [isLoaded, setIsLoaded] = useState(false);
         <div className="flex">
         <button
             onClick={nextStep}
-            className="flex items-center text-gray-400 transition-colors duration-200 rounded  px-4 py-2 w-full mr-4 border"
+            className="flex items-center transition-colors duration-200 rounded text-gray-900 px-4 py-2 w-full mr-4 border"
         >
             Back
             

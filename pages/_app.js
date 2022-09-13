@@ -18,7 +18,7 @@ import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 
 
-const smartChainChain = {
+const smartChain = {
   id: 56,
   name: 'Binance',
   network: 'Binance',
@@ -64,8 +64,8 @@ const { chains, provider, webSocketProvider } = configureChains(
     // chain.polygonMumbai,
     // chain.mainnet,
     // chain.polygon,
-    smartChainChain,
-    smartTestChain,
+    smartChain,
+    // smartTestChain,
     // chain.optimism,
     // chain.arbitrum,
     

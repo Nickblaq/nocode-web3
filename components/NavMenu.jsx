@@ -107,7 +107,7 @@ const NavMenu = () => {
                             <Typography 
                             as='h1'
                             variant='large'
-                            className='font-black text-3xl  font-serif cursor-pointer'
+                            className='font-black text-3xl  font-serif cursor-pointer text-[#1ab675]'
                             >PISSAR</Typography>
                         </Link>
                         <div className="hidden md:flex items-center gap-2">
