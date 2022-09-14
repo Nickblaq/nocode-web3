@@ -1,7 +1,7 @@
 import { useState,useEffect } from 'react';
 import CustomFactory from '../abi/CustomFactory.json';
 import { ethers, Contract } from 'ethers';
-import { useAccount, useSigner } from "wagmi";
+import { useAccount, useSigner, useNetwork, useSwitchNetwork } from "wagmi";
 import { useRouter } from 'next/router'
 
 
@@ -17,7 +17,12 @@ const [isLoaded, setIsLoaded] = useState(false);
     const {address} = useAccount()
     const { data: signer } = useSigner()
     const router = useRouter()
-    
+    const { chain, chains } = useNetwork()
+    const network = useSwitchNetwork({
+      throwForSwitchChainNotSupported: true,
+    })
+
+
     const [isAddress, setAddress] = useState();
     const [isSymbol, setSymbol] = useState();
     const [isDecimal, setDecimal] = useState();
@@ -102,6 +107,9 @@ const [isLoaded, setIsLoaded] = useState(false);
         <div className="animate__animated animate__fadeIn flex flex-col items-center p-4 gap-8 bg-[#1ab675] border rounded-md shadow-sm">
         <div>
                 <h1 className="text-xl font-bold text-gray-800">Just one step away! Confirm your feature settings.</h1>
+                {network &&
+                <h2 className='text-red-600 font-normal font-sans'>Connected to {chain?.name}, Please connec to binance chain</h2>
+              }
             </div>
         <div className="flex  items-center justify-between w-full">
             <span className="text-sm font-semibold text-gray-200">Token Name</span>
@@ -139,7 +147,7 @@ const [isLoaded, setIsLoaded] = useState(false);
             
         </button>
         <button
-        disabled={isLoaded || !address}
+        disabled={isLoaded || !address || network}
             onClick={claim}
             className="flex items-center  text-gray-400 transition-colors duration-200 rounded hover:text-gray-500 bg-gray-900 px-4 py-2 w-full">
                {address ? 'Confirm' : 'Connect Wallet'}
