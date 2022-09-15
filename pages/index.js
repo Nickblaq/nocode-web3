@@ -30,7 +30,7 @@ export default function Home() {
       </div>
 
       <div className="lg:py-24">
-        <h2 className="text-3xl font-bold sm:text-4xl text-[#1ab675]">BINANCE TOKEN GENERATOR</h2>
+        <h2 className="text-3xl font-bold sm:text-4xl text-[#1ab675]">BEP20 TOKEN GENERATOR</h2>
 
         <p className="mt-4">
         Our mission is to make token creation easy and accessible for everyone. You can create your own token in less than 1 minute.
